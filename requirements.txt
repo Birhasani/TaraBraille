@@ -1,5 +1,6 @@
-
-
+--upgrade pip
+bson
+subprocess
 streamlit
 torch
 transformers
@@ -11,3 +12,5 @@ pandas
 Pillow
 google-genai
 TTS
+json
+os
