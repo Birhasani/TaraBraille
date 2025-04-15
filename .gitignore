@@ -14,3 +14,5 @@ __pycache__/
 # Ignore output files
 *.log
 output.wav
+
+.streamlit/secrets.toml
