@@ -1,6 +1,5 @@
-pip
+pip=25.0.1
 bson
-subprocess
 streamlit
 torch
 transformers
