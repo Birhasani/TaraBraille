@@ -92,7 +92,6 @@ msgpack==1.1.0
 multidict==6.3.2
 murmurhash==1.0.12
 narwhals==1.33.0
-networkx==3.4.2
 ninja==1.11.1.4
 nltk==3.9.1
 num2words==0.5.14
