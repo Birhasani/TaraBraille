@@ -145,7 +145,6 @@ spacy==3.8.5
 spacy-legacy==3.0.12
 spacy-loggers==1.0.5
 srsly==2.5.1
-streamlit==1.40.1
 SudachiDict-core==20250129
 SudachiPy==0.6.10
 sympy==1.13.1
