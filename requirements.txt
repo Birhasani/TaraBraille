@@ -52,12 +52,6 @@ google-genai==1.9.0
 googleapis-common-protos==1.69.2
 grpcio==1.72.0rc1
 grpcio-status==1.72.0rc1
-gruut==2.2.3
-gruut-ipa==0.13.0
-gruut_lang_de==2.0.1
-gruut_lang_en==2.0.1
-gruut_lang_es==2.0.1
-gruut_lang_fr==2.0.2
 h11==0.14.0
 hangul-romanize==0.1.0
 httpcore==1.0.7
