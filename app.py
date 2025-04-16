@@ -14,10 +14,10 @@ class TaraDashboard:
     def __init__(self):
         self.api_key = st.secrets["general"]["api_key"]
         self.google_credentials = st.secrets["general"]["google_application_credentials"]
-        self.model_path = r"pretrained_model_tts\best_model.pth"  # Path ke model TTS
-        self.config_path = r"pretrained_model_tts\config.json"   # Path ke config TTS
-        self.output_path = "output.wav"  # Output file untuk suara
-        self.speakers_path = r"pretrained_model_tts\speakers.pth"  # Path speakers
+        self.model_path = "/mount/src/tarabraille/pretrained_model_tts/best_model.pth"
+        self.config_path = "/mount/src/tarabraille/pretrained_model_tts/config.json"
+        self.output_path = "/mount/src/tarabraille/output.wav"  # Output file untuk suara
+        self.speakers_path = "/mount/src/tarabraille/pretrained_model_tts/speakers.pth"  # Path speakers
         self.client = genai.Client(api_key=self.api_key)  # Inisialisasi Gemini API Client
 
         # Inisialisasi EasyOCR Reader untuk Bahasa Indonesia dan Bahasa Inggris

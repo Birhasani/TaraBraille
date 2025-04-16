@@ -1,3 +1,5 @@
+pip==25.0.1
+bson
 streamlit
 torch
 transformers
@@ -8,3 +10,5 @@ numpy
 pandas
 Pillow
 google-genai
+TTS
+os
