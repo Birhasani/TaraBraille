@@ -7,6 +7,8 @@ from google import genai
 import requests
 from io import BytesIO
 from mongodb_integration.mongo_db import save_to_mongo  # Import MongoDB save function
+from gtts import gTTS
+import tempfile
 
 class TaraDashboard:
     def __init__(self):
@@ -78,26 +80,17 @@ class TaraDashboard:
         response = chat.send_message(f"Coba ringkas dengan bahasa yang baik dan benar agar mudah dipahami dan menjadi pengetahuan yang utuh langsung tanpa kata pengantar dari kamu: {input_text}")
         return response.text
 
-    def convert_text_to_speech(self, summarized_text, speaker_name="wibowo"):
-        tts_command = [
-            "tts", "--text", summarized_text,
-            "--model_path", self.model_path,
-            "--config_path", self.config_path,
-            "--speaker_idx", speaker_name,
-            "--out_path", self.output_path
-        ]
-        try:
-            result = subprocess.run(tts_command, check=True, text=True, capture_output=True)
-            st.success("Speech generated successfully!")
-            st.audio(self.output_path, format="audio/wav")
-            # After generating the voice, save the audio file as binary
-            with open(self.output_path, "rb") as audio_file:
-                audio_data = audio_file.read()
-            return audio_data
-        except subprocess.CalledProcessError as e:
-            st.error(f"Error generating speech: {e}")
-            st.write("Error Output:")
-            st.write(e.stderr)
+    # Fungsi untuk mengonversi teks menjadi suara menggunakan gTTS
+    def convert_text_to_speech(self, summarized_text):
+        # Buat objek gTTS dengan bahasa Indonesia
+        tts = gTTS(text=summarized_text, lang='id')
+        
+        # Simpan hasil suara ke file sementara
+        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mp3")
+        tts.save(temp_file.name)
+        
+        # Kembalikan path file suara sementara yang sudah disimpan
+        return temp_file.name
 
     def run(self):
         """Menjalankan aplikasi Streamlit"""
@@ -200,11 +193,11 @@ class TaraDashboard:
             st.write("Summarized Text:")
             st.write(summarized_text)
 
-            speaker_name = st.selectbox("Choose Speaker", ["wibowo", "ardi", "gadis"])
+            # Pilih suara
             if st.button("Convert to Speech"):
-                # Get the audio data for the summarized text
-                audio_data = self.convert_text_to_speech(summarized_text, speaker_name)
-                st.audio(audio_data, format="audio/wav")  # Play audio in Streamlit
+                # Menggunakan gTTS untuk mengonversi teks menjadi suara
+                audio_file_path = self.convert_text_to_speech(summarized_text)
+                st.audio(audio_file_path, format="audio/mp3")  # Memutar suara di Streamlit
 
 if __name__ == "__main__":
     dashboard = TaraDashboard()  # Membuat objek TaraDashboard
